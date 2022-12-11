@@ -1,8 +1,8 @@
 import styled from "styled-components";
-import { seatColors } from "../../Constants/Colors";
+import { seatColors, textColor } from "../../Constants/Colors";
 
-export default function Seat() {
-  return <SeatNumber>10</SeatNumber>;
+export default function Seat({ seat }) {
+  return <SeatNumber>{seat.name}</SeatNumber>;
 }
 
 const SeatNumber = styled.div`
@@ -16,6 +16,7 @@ const SeatNumber = styled.div`
   font-size: 11px;
   display: flex;
   align-items: center;
+  justify-content: center;
   text-align: center;
   margin: 5px 3px;
 `;

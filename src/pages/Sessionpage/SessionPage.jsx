@@ -23,14 +23,12 @@ export default function SessionPage() {
     return <div>caregando...</div>;
   }
 
-  console.log(movie);
-
   return (
     <PageContainer>
       Selecione os horarios
       <ListContainer>
         {movie.days.map((f) => (
-          <SessionCard movie={f} />
+          <SessionCard movie={f} key={movie.id} />
         ))}
       </ListContainer>
       <Footer poster={movie.posterURL} title={movie.title} />

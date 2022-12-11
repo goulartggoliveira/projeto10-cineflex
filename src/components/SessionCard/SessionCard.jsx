@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { textColor } from "../../Constants/Colors";
 
@@ -7,7 +8,9 @@ export default function SessionCard({ movie }) {
       {movie.weekday} - {movie.date}
       <ButtonsContainer>
         {movie.showtimes.map((t) => (
-          <button key={t.name}>{t.name}</button>
+          <Link key={t.name} to={`/assentos/${t.id}`}>
+            <button>{t.name}</button>
+          </Link>
         ))}
       </ButtonsContainer>
     </SessionContainer>

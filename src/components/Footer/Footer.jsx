@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { baseColor } from "../../Constants/Colors";
 
-export default function Footer({ poster, title }) {
+export default function Footer({ poster, title, weekday, hour }) {
   return (
     <FooterContainer>
       <PosterContainer>
@@ -9,6 +9,11 @@ export default function Footer({ poster, title }) {
       </PosterContainer>
       <Title>
         <p>{title}</p>
+        {weekday && hour && (
+          <p>
+            {weekday} - {hour}
+          </p>
+        )}
       </Title>
     </FooterContainer>
   );
