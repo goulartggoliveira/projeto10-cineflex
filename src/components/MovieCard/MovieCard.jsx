@@ -9,7 +9,7 @@ export default function MovieCard({ posterURL }) {
 }
 
 const MovieContainer = styled.div`
-  width: 145px;
+  width: 150px;
   height: 210px;
   box-shadow: 0px 2px 4px 2px #0000001a;
   border-radius: 3px;

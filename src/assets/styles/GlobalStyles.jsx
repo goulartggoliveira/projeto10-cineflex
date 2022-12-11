@@ -45,8 +45,8 @@ table {
 	border-spacing: 0;
 }
 button {
-	height: 42px;
-	width: 225px;
+	width: 83px;
+height: 43px;
 left: 72px;
 top: 688px;
 

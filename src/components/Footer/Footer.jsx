@@ -1,15 +1,17 @@
 import styled from "styled-components";
-import { baseColor } from "../../constants/colors";
+import { baseColor } from "../../Constants/Colors";
 
-export default function Footer() {
-  <FooterContainer>
-    <PosterContainer>
-      <Poster src="https://img.elo7.com.br/product/original/3E882D1/big-poster-filme-homem-aranha-sem-volta-para-casa-90x60-cm-3-poster.jpg" />
-    </PosterContainer>
-    <Title>
-      <p>filmeee</p>
-    </Title>
-  </FooterContainer>;
+export default function Footer({ poster, title }) {
+  return (
+    <FooterContainer>
+      <PosterContainer>
+        <Poster src={poster} />
+      </PosterContainer>
+      <Title>
+        <p>{title}</p>
+      </Title>
+    </FooterContainer>
+  );
 }
 
 const FooterContainer = styled.div`
@@ -38,7 +40,7 @@ const PosterContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: white;
+  background-color: grey;
   margin: 12px;
 `;
 const Poster = styled.img`

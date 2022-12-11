@@ -1,8 +1,13 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { accentColor, baseColor } from "../../Constants/Colors";
 
 export default function Navbar() {
-  return <NavContainer>CINEFLEX</NavContainer>;
+  return (
+    <NavContainer>
+      <Link to="/">CINEFLEX</Link>
+    </NavContainer>
+  );
 }
 const NavContainer = styled.div`
   width: 100%;
