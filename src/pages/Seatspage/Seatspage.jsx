@@ -2,7 +2,7 @@ import styled from "styled-components";
 import Footer from "../../components/Footer/Footer";
 import Seat from "../../components/Seat/Seat";
 import { textColor, seatColors } from "../../Constants/Colors";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { Url } from "../../Constants/urls";
@@ -11,6 +11,8 @@ export default function Seatspage() {
   const { idSessao } = useParams();
   const [session, setSession] = useState(undefined);
   const [assentosSelecionados, setAssentosSelecionados] = useState([]);
+  const [input, setInput] = useState({ name: "", cpf: "" });
+  const navigate = useNavigate;
 
   useEffect(() => {
     const promise = axios.get(`${Url}/showtimes/${idSessao}/seats`);
@@ -33,7 +35,25 @@ export default function Seatspage() {
       }
     }
   }
-  console.log(assentosSelecionados);
+
+  function formInfo(e) {
+    setInput({ ...input, [e.target.name]: e.target.value });
+  }
+  function reservarAssentos(e) {
+    e.preventDefault();
+
+    const body = {
+      ids: assentosSelecionados.map((a) => a.id),
+      name: input.name,
+      cpf: input.cpf,
+    };
+    axios
+      .post(`${Url}/seats/book-many`, body)
+      .then((res) => {
+        navigate("/sucesso");
+      })
+      .catch((err) => alert(err.response.data));
+  }
 
   if (!session) {
     return <div>Carregando...</div>;
@@ -73,11 +93,22 @@ export default function Seatspage() {
           <p>Indisponível</p>
         </Exemplo>
       </Containerexemplo>
-      <Formulario>
+      <Formulario onSubmit={reservarAssentos}>
         Nome do comprador:
-        <input placeholder="Digite seu nome..." />
+        <input
+          name="name"
+          value={input.name}
+          onChange={formInfo}
+          placeholder="Digite seu nome..."
+        />
         CPF do comprador:
-        <input type="number" placeholder="Digite seu CPF..." />
+        <input
+          name="cpf"
+          value={input.cpf}
+          onChange={formInfo}
+          type="number"
+          placeholder="Digite seu CPF..."
+        />
         <button>Reservar assento(s)</button>
       </Formulario>
     </PageContainer>
