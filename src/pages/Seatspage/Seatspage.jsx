@@ -10,12 +10,30 @@ import { Url } from "../../Constants/urls";
 export default function Seatspage() {
   const { idSessao } = useParams();
   const [session, setSession] = useState(undefined);
+  const [assentosSelecionados, setAssentosSelecionados] = useState([]);
 
   useEffect(() => {
     const promise = axios.get(`${Url}/showtimes/${idSessao}/seats`);
     promise.then((res) => setSession(res.data));
     promise.catch((err) => console.log(err.response.data));
   }, []);
+
+  function escolherAssentos(seat) {
+    if (seat.isAvailable === false) {
+      alert("Esse assento não está disponível");
+    } else {
+      const estaSelecionado = assentosSelecionados.some(
+        (s) => seat.id === s.id
+      );
+      if (estaSelecionado) {
+        const novaLista = assentosSelecionados.filter((s) => s.id !== seat.id);
+        setAssentosSelecionados(novaLista);
+      } else {
+        setAssentosSelecionados([...assentosSelecionados, seat]);
+      }
+    }
+  }
+  console.log(assentosSelecionados);
 
   if (!session) {
     return <div>Carregando...</div>;
@@ -25,8 +43,13 @@ export default function Seatspage() {
     <PageContainer>
       Selecione os assentos
       <SeatsContainer>
-        {session?.seats?.map((s) => (
-          <Seat key={s.id} seat={s} />
+        {session?.seats?.map((seat) => (
+          <Seat
+            key={seat.id}
+            seat={seat}
+            escolherAssentos={escolherAssentos}
+            estaSelecionado={assentosSelecionados.some((s) => seat.id === s.id)}
+          />
         ))}
       </SeatsContainer>
       <Footer
