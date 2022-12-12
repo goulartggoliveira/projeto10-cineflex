@@ -4,12 +4,12 @@ import { textColor } from "../../Constants/Colors";
 
 export default function SessionCard({ movie }) {
   return (
-    <SessionContainer>
+    <SessionContainer data-test="movie-day">
       {movie.weekday} - {movie.date}
       <ButtonsContainer>
         {movie.showtimes.map((t) => (
           <Link key={t.name} to={`/assentos/${t.id}`}>
-            <button>{t.name}</button>
+            <button data-test="showtime">{t.name}</button>
           </Link>
         ))}
       </ButtonsContainer>

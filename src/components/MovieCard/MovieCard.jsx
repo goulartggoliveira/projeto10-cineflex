@@ -3,7 +3,7 @@ import styled from "styled-components";
 export default function MovieCard({ posterURL }) {
   return (
     <MovieContainer>
-      <MovieImage src={posterURL} />
+      <MovieImage data-test="movie" src={posterURL} />
     </MovieContainer>
   );
 }

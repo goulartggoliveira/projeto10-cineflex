@@ -3,7 +3,7 @@ import { baseColor } from "../../Constants/Colors";
 
 export default function Footer({ poster, title, weekday, hour }) {
   return (
-    <FooterContainer>
+    <FooterContainer data-test="footer">
       <PosterContainer>
         <Poster src={poster} />
       </PosterContainer>

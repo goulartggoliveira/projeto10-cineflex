@@ -8,7 +8,7 @@ export default function SuccessPage({ sucesso }) {
   return (
     <PageContainer>
       <Title>Pedido Feito com sucesso!</Title>
-      <TextContainer>
+      <TextContainer data-test="movie-info">
         <strong>
           <p>Filme e sessão</p>
         </strong>
@@ -17,12 +17,12 @@ export default function SuccessPage({ sucesso }) {
           {date} - {hour}
         </p>
       </TextContainer>
-      <TextContainer>
+      <TextContainer data-test="seats-info">
         {seats.map((s) => (
           <p key={s}>Assento {s}</p>
         ))}
       </TextContainer>
-      <TextContainer>
+      <TextContainer data-test="client-info">
         <strong>
           <p>Comprador</p>
         </strong>
@@ -30,7 +30,7 @@ export default function SuccessPage({ sucesso }) {
         <p>CPF: {cpf}</p>
       </TextContainer>
       <Link to="/">
-        <button>Voltar para a home</button>
+        <button data-test="go-home-btn">Voltar para a home</button>
       </Link>
     </PageContainer>
   );

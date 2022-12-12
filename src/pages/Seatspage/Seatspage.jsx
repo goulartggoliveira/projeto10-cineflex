@@ -76,6 +76,7 @@ export default function Seatspage({ setSucesso }) {
       <SeatsContainer>
         {session?.seats?.map((seat) => (
           <Seat
+            data-test="seat"
             key={seat.id}
             seat={seat}
             escolherAssentos={escolherAssentos}
@@ -107,6 +108,7 @@ export default function Seatspage({ setSucesso }) {
       <Formulario onSubmit={reservarAssentos}>
         Nome do comprador:
         <input
+          data-test="client-name"
           name="name"
           value={input.name}
           onChange={formInfo}
@@ -114,13 +116,14 @@ export default function Seatspage({ setSucesso }) {
         />
         CPF do comprador:
         <input
+          data-test="client-cpf"
           name="cpf"
           value={input.cpf}
           onChange={formInfo}
           type="number"
           placeholder="Digite seu CPF..."
         />
-        <button>Reservar assento(s)</button>
+        <button data-test="book-seat-btn">Reservar assento(s)</button>
       </Formulario>
     </PageContainer>
   );
