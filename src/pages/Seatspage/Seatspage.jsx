@@ -7,12 +7,12 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { Url } from "../../Constants/urls";
 
-export default function Seatspage() {
+export default function Seatspage({ setSucesso }) {
   const { idSessao } = useParams();
   const [session, setSession] = useState(undefined);
   const [assentosSelecionados, setAssentosSelecionados] = useState([]);
   const [input, setInput] = useState({ name: "", cpf: "" });
-  const navigate = useNavigate;
+  const navigate = useNavigate();
 
   useEffect(() => {
     const promise = axios.get(`${Url}/showtimes/${idSessao}/seats`);
@@ -47,9 +47,20 @@ export default function Seatspage() {
       name: input.name,
       cpf: input.cpf,
     };
+
+    const infos = {
+      movie: session.movie.title,
+      date: session.day.date,
+      hour: session.name,
+      buyer: input.name,
+      cpf: input.cpf,
+      seats: assentosSelecionados.map((a) => a.name),
+    };
+
     axios
       .post(`${Url}/seats/book-many`, body)
       .then((res) => {
+        setSucesso(infos);
         navigate("/sucesso");
       })
       .catch((err) => alert(err.response.data));

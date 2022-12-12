@@ -5,8 +5,10 @@ import Home from "./pages/Home/Home";
 import SessionPage from "./pages/Sessionpage/SessionPage";
 import Seatspage from "./pages/Seatspage/Seatspage";
 import SuccessPage from "./pages/Successpage/SuccessPage";
+import { useState } from "react";
 
 function App() {
+  const [sucesso, setSucesso] = useState({});
   return (
     <BrowserRouter>
       <GlobalStyle />
@@ -14,8 +16,11 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/sessoes/:idFilme" element={<SessionPage />} />
-        <Route path="/assentos/:idSessao" element={<Seatspage />} />
-        <Route path="/sucesso" element={<SuccessPage />} />
+        <Route
+          path="/assentos/:idSessao"
+          element={<Seatspage setSucesso={setSucesso} />}
+        />
+        <Route path="/sucesso" element={<SuccessPage sucesso={sucesso} />} />
       </Routes>
     </BrowserRouter>
   );
